@@ -16,7 +16,7 @@ body > form,
 body > header,
 body > div,
 body > section {
-  max-width: 1240px;
+  max-width: $max-width;
 }
 
 header {

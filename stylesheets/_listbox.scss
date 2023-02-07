@@ -1,0 +1,32 @@
+.listbox-container {
+  display: flex;
+  flex-flow: column nowrap;
+  max-width: $max-width;
+}
+
+.listbox {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+
+  & svg {
+    height: 0.8rem;
+    fill: black;
+    position: absolute;
+    top: calc((1.25rem / 2) - 0.4rem);
+    right: 0.4rem;
+    transition: transform 0.2s ease-out;
+  }
+}
+
+.option {
+  display: none;
+  cursor: pointer;
+  user-select: none;
+  color: grey;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

@@ -225,4 +225,54 @@ h1 {
   }
 }
 
+.listbox-container {
+  display: flex;
+  flex-flow: column nowrap;
+  max-width: 1240px;
+}
+
+.listbox {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+.listbox svg {
+  height: 0.8rem;
+  fill: black;
+  position: absolute;
+  top: 0.225rem;
+  right: 0.4rem;
+  transition: transform 0.2s ease-out;
+}
+
+.option {
+  display: none;
+  cursor: pointer;
+  user-select: none;
+  color: grey;
+}
+.option:last-child {
+  margin-bottom: 0;
+}
+
+.u-turn {
+  transform: rotate(180deg);
+}
+
+.displayed {
+  display: block;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
 /*# sourceMappingURL=style.css.map */
