@@ -1,0 +1,9 @@
+@mixin flex($flex-direction: row, $flex-wrap: nowrap) {
+  display: flex;
+  flex-flow: $flex-direction $flex-wrap;
+}
+
+@mixin XY($justify-content: center, $align-items: center) {
+  justify-content: $justify-content;
+  align-items: $align-items;
+}

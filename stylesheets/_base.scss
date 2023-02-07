@@ -1,0 +1,11 @@
+:root {
+  font-size: 16px;
+
+  font-family: "Lato", sans-serif;
+}
+
+header {
+  @include flex(column);
+  @include XY(center, center);
+  margin: 2.625rem 0 1rem;
+}

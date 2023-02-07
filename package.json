@@ -1,0 +1,22 @@
+{
+  "name": "oc-lespetitsplats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass ./stylesheets/main.scss:./public/css/style.css -w --style expanded"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClementAver/OC-LesPetitsPlats.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ClementAver/OC-LesPetitsPlats/issues"
+  },
+  "homepage": "https://github.com/ClementAver/OC-LesPetitsPlats#readme",
+  "dependencies": {
+    "sass": "^1.58.0"
+  }
+}
