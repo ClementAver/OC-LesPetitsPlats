@@ -3,7 +3,11 @@
   flex-flow: $flex-direction $flex-wrap;
 }
 
-@mixin XY($justify-content: center, $align-items: center) {
+@mixin j-cA-i($justify-content: center, $align-items: center) {
   justify-content: $justify-content;
   align-items: $align-items;
+}
+
+@mixin b-r() {
+  border-radius: 0.3rem;
 }
