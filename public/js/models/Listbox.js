@@ -17,7 +17,7 @@ class Listbox {
     description.textContent = `${this._label}`;
 
     let search = document.createElement("input");
-    description.setAttribute("id", `${this._id}-search`);
+    search.setAttribute("id", `${this._id}-search`);
     search.setAttribute("type", "search");
     search.classList.add("sr-only");
     search.setAttribute("tabindex", "-1");
@@ -32,10 +32,32 @@ class Listbox {
     listbox.setAttribute("aria-expanded", "false");
     listbox.setAttribute("id", `${this._id}`);
     listbox.classList.add("listbox");
-    listbox.setAttribute("aria-activedescendant", `${this._options[0]}`);
 
     const listboxChevron = document.createElement("i");
     listboxChevron.classList.add("fa-sharp", "fa-solid", "fa-chevron-down");
+
+    this._options.forEach((key) => {
+      let formatted = key.replace(/ /g, "").toLowerCase();
+      const option = document.createElement("li");
+      option.setAttribute("role", "option");
+      option.setAttribute("id", `${formatted}`);
+      option.setAttribute("tabindex", "0");
+      option.textContent = `${key}`;
+      option.classList.add("option");
+      listbox.append(option);
+
+      option.addEventListener("click", () => {
+        retracts();
+        console.log(option.textContent);
+      });
+
+      option.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          retracts();
+          console.log(option.textContent);
+        }
+      });
+    });
 
     descriptionContainer.append(description);
     descriptionContainer.append(search);
@@ -47,6 +69,7 @@ class Listbox {
       search.classList.remove("sr-only");
       search.setAttribute("tabindex", "0");
       search.focus();
+      search.value = "";
       const options = document.querySelectorAll(`#${this._id} [role="option"]`);
       listbox.setAttribute("aria-expanded", "true");
       options.forEach((key) => {
@@ -59,7 +82,6 @@ class Listbox {
     let retracts = () => {
       description.classList.remove("sr-only");
       description.setAttribute("tabindex", "0");
-      description.focus();
       search.classList.add("sr-only");
       search.setAttribute("tabindex", "-1");
       const options = document.querySelectorAll(`#${this._id} [role="option"]`);
@@ -78,19 +100,34 @@ class Listbox {
     });
 
     window.addEventListener("click", (e) => {
-      if (this._state === "deployed" && !e.target.closest(`ul#${this._id}`)) {
-        retracts();
+      switch (this._state) {
+        case "retracted":
+          if (e.target.closest(`#container-${this._id} > div`)) {
+            deploys();
+          }
+          break;
+        case "deployed":
+          if (e.target.closest(`#container-${this._id}`)) {
+          } else {
+            retracts();
+          }
       }
     });
 
-    description.addEventListener("click", (e) => {
-      e.stopPropagation();
-      switch (this._state) {
-        case "retracted":
-          deploys();
-          break;
-        case "deployed":
-          retracts();
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        switch (this._state) {
+          case "retracted":
+            if (e.target.closest(`#container-${this._id} > div`)) {
+              deploys();
+            }
+            break;
+          case "deployed":
+            if (e.target.closest(`#container-${this._id}`)) {
+            } else {
+              retracts();
+            }
+        }
       }
     });
 
@@ -107,42 +144,11 @@ class Listbox {
     });
 
     search.addEventListener("keydown", (e) => {
+      e.stopPropagation();
       if (e.key === "Enter") {
         retracts();
+        console.log(search.value);
       }
-    });
-
-    this._options.forEach((key) => {
-      let formatted = key.replace(/ /g, "").toLowerCase();
-      const option = document.createElement("li");
-      option.setAttribute("role", "option");
-      option.setAttribute("id", `${formatted}`);
-      option.setAttribute("tabindex", "0");
-      option.textContent = `${key}`;
-      option.classList.add("option");
-      listbox.append(option);
-
-      option.addEventListener("click", () => {
-        switch (this._state) {
-          case "retracted":
-            deploys();
-            break;
-          case "deployed":
-            retracts();
-        }
-      });
-
-      option.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          switch (this._state) {
-            case "retracted":
-              deploys();
-              break;
-            case "deployed":
-              retracts();
-          }
-        }
-      });
     });
 
     container.append(descriptionContainer);
