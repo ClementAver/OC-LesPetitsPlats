@@ -1,6 +1,5 @@
 :root {
   font-size: 16px;
-
   font-family: "Lato", sans-serif;
 }
 
@@ -35,38 +34,14 @@ header {
   }
 }
 
-form.search-bar {
-  @include flex;
-  @include j-cA-i(start, center);
-  @include b-r;
-  height: 4rem;
-  margin: 0 auto 1.6rem;
-  background-color: $grey;
+.filter-division {
+  @include flex(row, nowrap);
+  gap: 1rem;
+  margin: 0 auto 1.2rem;
+  color: white;
+  font-size: 1.125rem;
 
-  & input {
-    @include b-r;
-    height: 100%;
-    flex-grow: 2;
-    border: none;
-    background-color: $grey;
-    padding: 0 1rem;
-
-    font-family: "Lato", sans-serif;
-    vertical-align: bottom;
-    font-size: 1.125rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    &::placeholder {
-      opacity: 0.5;
-    }
-  }
-
-  & svg {
-    width: 2.2rem;
-    height: 2.2rem;
-    min-width: 2.2rem;
-    margin: 0 1rem;
+  @media screen and (max-width: 768px) {
+    @include flex(row, wrap);
   }
 }

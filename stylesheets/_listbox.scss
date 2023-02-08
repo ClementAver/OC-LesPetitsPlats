@@ -1,32 +1,90 @@
 .listbox-container {
-  display: flex;
-  flex-flow: column nowrap;
-  max-width: $max-width;
+  @include flex(column);
+  @include b-r;
+  width: fit-content;
+  min-width: 170px;
+  max-width: 650px;
+  height: fit-content;
+  max-height: 400px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    max-width: none;
+  }
+
+  & > div:first-child {
+    @include flex(row, nowrap);
+    justify-content: space-between;
+    align-items: baseline;
+
+    & span {
+      font-weight: 700;
+      padding: 1rem;
+      cursor: pointer;
+    }
+
+    & i {
+      transition: transform 0.2s ease-out;
+      padding: 1rem;
+    }
+  }
+
+  & input {
+    @include b-r;
+    @include ellipsis;
+    display: block;
+    padding: 1rem;
+    width: 100%;
+    border: none;
+    color: white;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+
+    &::placeholder {
+      color: white;
+      opacity: 0.5;
+    }
+  }
+
+  &:first-of-type {
+    background-color: $blue;
+    input {
+      background-color: $blue;
+    }
+  }
+
+  &:nth-of-type(2) {
+    background-color: $mint;
+    input {
+      background-color: $mint;
+    }
+  }
+
+  &:last-of-type {
+    background-color: $orange;
+    input {
+      background-color: $orange;
+    }
+  }
 }
 
-.listbox {
-  position: relative;
-  display: flex;
-  flex-flow: column nowrap;
-  width: 100%;
-
-  & svg {
-    height: 0.8rem;
-    fill: black;
-    position: absolute;
-    top: calc((1.25rem / 2) - 0.4rem);
-    right: 0.4rem;
-    transition: transform 0.2s ease-out;
-  }
+ul {
+  @include flex(column, wrap);
+  gap: 0.5rem;
 }
 
 .option {
   display: none;
   cursor: pointer;
   user-select: none;
-  color: grey;
+  padding: 0 1rem;
+
+  &:first-child {
+    margin-top: 1rem;
+  }
 
   &:last-child {
-    margin-bottom: 0;
+    margin-bottom: 1rem;
   }
 }

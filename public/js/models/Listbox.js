@@ -18,7 +18,7 @@ class Listbox {
 
     let search = document.createElement("input");
     search.setAttribute("id", `${this._id}-search`);
-    search.setAttribute("type", "search");
+    search.setAttribute("type", "text");
     search.classList.add("sr-only");
     search.setAttribute("tabindex", "-1");
     search.setAttribute("placeholder", `${this._placeholder}`);
@@ -68,7 +68,6 @@ class Listbox {
       description.setAttribute("tabindex", "-1");
       search.classList.remove("sr-only");
       search.setAttribute("tabindex", "0");
-      search.focus();
       search.value = "";
       const options = document.querySelectorAll(`#${this._id} [role="option"]`);
       listbox.setAttribute("aria-expanded", "true");
@@ -120,6 +119,7 @@ class Listbox {
           case "retracted":
             if (e.target.closest(`#container-${this._id} > div`)) {
               deploys();
+              search.focus();
             }
             break;
           case "deployed":
@@ -136,9 +136,7 @@ class Listbox {
         switch (this._state) {
           case "retracted":
             deploys();
-            break;
-          case "deployed":
-            retracts();
+            search.focus();
         }
       }
     });
@@ -148,6 +146,8 @@ class Listbox {
       if (e.key === "Enter") {
         retracts();
         console.log(search.value);
+      } else if (e.key === "Escape") {
+        retracts();
       }
     });
 
