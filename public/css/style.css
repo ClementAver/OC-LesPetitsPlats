@@ -173,7 +173,7 @@ header svg {
   }
 }
 
-.filter-division {
+.filters {
   display: flex;
   flex-flow: row nowrap;
   gap: 1rem;
@@ -182,7 +182,7 @@ header svg {
   font-size: 1.125rem;
 }
 @media screen and (max-width: 768px) {
-  .filter-division {
+  .filters {
     display: flex;
     flex-flow: row wrap;
   }

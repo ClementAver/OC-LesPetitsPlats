@@ -1,5 +1,6 @@
 function createsfilterListboxes() {
-  let filterDivision = document.querySelector(".filter-division");
+  //=//| filter division |\\=\\
+  let filterDivision = document.querySelector(".filters");
 
   let ingredients = new Listbox({ label: "Ingrédients", placeholder: "Rechercher un ingrédient", id: "ingredients", options: ["Lait de coco", "Jus de citron", "Tomate"] });
   let ingredientsContainer = ingredients.createListboxNode();
@@ -11,6 +12,9 @@ function createsfilterListboxes() {
   filterDivision.appendChild(ingredientsContainer);
   filterDivision.appendChild(appliancesContainer);
   filterDivision.appendChild(utensilsContainer);
+
+  //=//| recipes section |\\=\\
+  recipes.forEach((recipe) => Recipe.card(recipe));
 }
 
 function init() {
