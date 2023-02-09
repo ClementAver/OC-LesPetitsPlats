@@ -1,6 +1,5 @@
 class Recipe {
   static card(recipe) {
-    console.log(recipe);
     const article = document.createElement("article");
     const img = document.createElement("div");
     const text = document.createElement("div");
@@ -15,7 +14,17 @@ class Recipe {
     const ingredients = document.createElement("ul");
     recipe.ingredients.forEach((ingredient) => {
       const li = document.createElement("li");
-      li.innerHTML = new IngredientFactory(ingredient);
+      if (ingredient.quantity) {
+        if (ingredient.unit) {
+          const unit = ingredient.unit;
+          // comment formater correctement les unités ?
+          li.innerHTML = `${ingredient.ingredient}: ${ingredient.quantity}&#8239;${unit}`;
+        } else {
+          li.innerHTML = `${ingredient.ingredient}: ${ingredient.quantity}`;
+        }
+      } else {
+        li.innerHTML = `${ingredient.ingredient}`;
+      }
       ingredients.append(li);
     });
     const steps = document.createElement("div");
