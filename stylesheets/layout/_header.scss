@@ -1,0 +1,15 @@
+header {
+  @include flex(column);
+  @include j-cA-i(center, center);
+  gap: 0.4rem;
+  margin: 2.6rem auto 1.2rem;
+  text-align: center;
+
+  & svg {
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+    @media screen and (max-width: 768px) {
+      width: 4.4rem;
+      height: 4.4rem;
+    }
+  }
+}

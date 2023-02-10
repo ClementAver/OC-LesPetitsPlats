@@ -1,8 +1,10 @@
 class Recipe {
   static card(recipe) {
     const article = document.createElement("article");
+    article.classList.add("card");
     const img = document.createElement("div");
     const text = document.createElement("div");
+    text.classList.add("card-text");
 
     const header = document.createElement("div");
     const title = document.createElement("h2");
@@ -18,16 +20,17 @@ class Recipe {
         if (ingredient.unit) {
           const unit = ingredient.unit;
           // comment formater correctement les unités ?
-          li.innerHTML = `${ingredient.ingredient}: ${ingredient.quantity}&#8239;${unit}`;
+          li.innerHTML = `<span>${ingredient.ingredient}</span>&#8239;: ${ingredient.quantity} ${unit}`;
         } else {
-          li.innerHTML = `${ingredient.ingredient}: ${ingredient.quantity}`;
+          li.innerHTML = `<span>${ingredient.ingredient}</span>&#8239;: ${ingredient.quantity}`;
         }
       } else {
-        li.innerHTML = `${ingredient.ingredient}`;
+        li.innerHTML = `<span>${ingredient.ingredient}</span>`;
       }
       ingredients.append(li);
     });
     const steps = document.createElement("div");
+    steps.textContent = recipe.description;
 
     header.append(title);
     header.append(time);

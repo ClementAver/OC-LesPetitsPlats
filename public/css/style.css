@@ -1,7 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Lato:wght@400;700&display=swap"); /* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Lato:wght@400;700&display=swap");
 html,
 body,
 div,
@@ -154,6 +155,39 @@ body > section {
   max-width: 1240px;
 }
 
+h1 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 2.25rem;
+  color: #d04f4f;
+}
+@media screen and (max-width: 768px) {
+  h1 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+}
+
+.u-turn {
+  transform: rotate(180deg);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
 header {
   display: flex;
   flex-flow: column nowrap;
@@ -188,22 +222,75 @@ header svg {
   }
 }
 
-h1 {
-  font-family: "DM Sans", sans-serif;
-  font-size: 2.25rem;
-  color: #d04f4f;
+.recipes {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto 1.6rem;
+  gap: 50px;
+}
+
+.card {
+  display: flex;
+  flex-flow: column nowrap;
+  border-radius: 0.3rem;
+  background-color: #e7e7e7;
+  width: 100%;
+  max-width: calc(33.3333333333% - 33.3333333333px);
+}
+@media screen and (max-width: 1200px) {
+  .card {
+    max-width: calc(50% - 25px);
+  }
 }
 @media screen and (max-width: 768px) {
-  h1 {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
+  .card {
+    max-width: none;
   }
+}
+.card > div:first-child {
+  border-radius: 0.3rem 0.3rem 0 0;
+  background-color: #c7bebe;
+  height: 170px;
+}
+
+.card-text {
+  padding: 1rem;
+}
+.card-text > div:first-child {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  white-space: nowrap;
+}
+.card-text > div:first-child h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 400;
+}
+.card-text > div:nth-child(2) {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+.card-text > div:nth-child(2) > ul,
+.card-text > div:nth-child(2) > div {
+  flex-basis: 50%;
+}
+.card-text > div:nth-child(2) div {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 72px;
+}
+.card-text li span {
+  font-weight: 700;
 }
 
 .listbox-container {
@@ -273,8 +360,7 @@ h1 {
 .listbox-container:last-of-type input {
   background-color: #ed6454;
 }
-
-ul {
+.listbox-container ul {
   display: flex;
   flex-flow: column wrap;
   gap: 0.5rem;
@@ -291,6 +377,9 @@ ul {
 }
 .option:last-child {
   margin-bottom: 1rem;
+}
+.option.displayed {
+  display: block;
 }
 
 form.search-bar {
@@ -318,25 +407,6 @@ form.search-bar svg {
   height: 2.2rem;
   min-width: 2.2rem;
   margin: 0 1rem;
-}
-
-.u-turn {
-  transform: rotate(180deg);
-}
-
-.displayed {
-  display: block;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

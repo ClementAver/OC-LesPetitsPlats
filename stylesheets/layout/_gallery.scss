@@ -1,0 +1,5 @@
+.recipes {
+  @include flex(row, wrap);
+  margin: 0 auto 1.6rem;
+  gap: 50px;
+}

@@ -1,9 +1,11 @@
-@import "variables";
-@import "mixins";
-@import "fonts";
-@import "reset";
-@import "base";
-@import "typography";
-@import "listbox";
-@import "search-bar";
-@import "utilities";
+@charset "UTF-8";
+
+@import "abstracts/variables", "abstracts/mixins";
+
+@import "vendors/reset";
+
+@import "base/base", "base/fonts", "base/typography", "base/helpers";
+
+@import "layout/header", "layout/filters", "layout/gallery";
+
+@import "components/card", "components/listbox", "components/search-bar";
