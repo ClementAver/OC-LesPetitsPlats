@@ -1,6 +1,7 @@
 class Recipe {
   static card(recipe) {
     const article = document.createElement("article");
+    article.setAttribute("tabindex", "0");
     article.classList.add("card");
     const img = document.createElement("div");
     const text = document.createElement("div");

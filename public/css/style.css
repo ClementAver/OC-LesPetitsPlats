@@ -207,16 +207,29 @@ header svg {
   }
 }
 
-.filters {
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 1rem;
+.filters-container {
   margin: 0 auto 1.2rem;
+  position: relative;
+  height: 50px;
+}
+@media screen and (max-width: 768px) {
+  .filters-container {
+    height: fit-content;
+  }
+}
+
+.filters {
+  position: absolute;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
   color: white;
   font-size: 1.125rem;
+  width: 100%;
 }
 @media screen and (max-width: 768px) {
   .filters {
+    position: static;
     display: flex;
     flex-flow: row wrap;
   }
