@@ -1,0 +1,5 @@
+.tags {
+  @include flex(row, wrap);
+  margin: 0 auto;
+  gap: 0.5rem;
+}

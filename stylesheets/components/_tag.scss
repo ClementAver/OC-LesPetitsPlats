@@ -1,0 +1,21 @@
+.tag {
+  @include flex();
+  @include b-r;
+  gap: 0.5rem;
+  width: fit-content;
+  height: min-content;
+  background-color: $grey;
+  cursor: pointer;
+
+  padding: 0.5rem;
+
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  &:last-child {
+    margin-bottom: 0.5rem;
+  }
+}

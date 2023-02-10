@@ -1,4 +1,4 @@
-// argument e.g. {label : "Gender", id : "gender", options : ["male", "female", "non binary"]}.
+// argument e.g. {label : "Gender", id : "gender", options : ["male", "female", "non binary"], color: #ffffff}.
 class Listbox {
   constructor(object) {
     this._label = object.label;
@@ -6,6 +6,7 @@ class Listbox {
     this._id = object.id;
     this._options = object.options;
     this._state = "retracted";
+    this._color = object.color;
   }
 
   createListboxNode() {
@@ -17,6 +18,7 @@ class Listbox {
     description.textContent = `${this._label}`;
 
     let search = document.createElement("input");
+    search.style.backgroundColor = this._color;
     search.setAttribute("id", `${this._id}-search`);
     search.setAttribute("type", "text");
     search.classList.add("sr-only");
@@ -49,12 +51,14 @@ class Listbox {
       option.addEventListener("click", () => {
         retracts();
         console.log(option.textContent);
+        Tag.add(`${key}`, `${this._color}`);
       });
 
       option.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           retracts();
           console.log(option.textContent);
+          Tag.add(`${key}`, `${this._color}`);
         }
       });
     });
@@ -153,6 +157,7 @@ class Listbox {
 
     container.append(descriptionContainer);
     container.append(listbox);
+    container.style.backgroundColor = this._color;
     return container;
   }
 }
