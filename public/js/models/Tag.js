@@ -15,11 +15,17 @@ class Tag {
 
     div.addEventListener("click", () => {
       tags.removeChild(div);
+      let tag = activeTags.indexOf(this._name);
+      activeTags.splice(tag, 1);
+      console.log(activeTags);
     });
 
     div.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         tags.removeChild(div);
+        let tag = activeTags.indexOf(this._name);
+        activeTags.splice(tag, 1);
+        console.log(activeTags);
       }
     });
   }

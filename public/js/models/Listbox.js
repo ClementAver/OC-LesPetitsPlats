@@ -38,30 +38,41 @@ class Listbox {
     const listboxChevron = document.createElement("i");
     listboxChevron.classList.add("fa-sharp", "fa-solid", "fa-chevron-down");
 
-    this._options.forEach((key) => {
-      let formatted = key.replace(/ /g, "").toLowerCase();
-      const option = document.createElement("li");
-      option.setAttribute("role", "option");
-      option.setAttribute("id", `${formatted}`);
-      option.setAttribute("tabindex", "0");
-      option.textContent = `${key}`;
-      option.classList.add("option");
-      listbox.append(option);
+    let createOptions = (array) => {
+      array.forEach((key) => {
+        let formatted = key.replace(/ /g, "").toLowerCase();
+        const option = document.createElement("li");
+        option.setAttribute("role", "option");
+        option.setAttribute("id", `${formatted}`);
+        option.setAttribute("tabindex", "0");
+        option.textContent = `${key}`;
+        option.classList.add("option");
+        listbox.append(option);
 
-      option.addEventListener("click", () => {
-        retracts();
-        let tag = new Tag({ name: `${key}`, color: `${this._color}` });
-        tag.add();
-      });
-
-      option.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
+        option.addEventListener("click", () => {
           retracts();
-          let tag = new Tag({ name: `${key}`, color: `${this._color}` });
-          tag.add();
-        }
+          if (activeTags.indexOf(key) === -1) {
+            activeTags.push(key);
+            console.log(activeTags);
+            let tag = new Tag({ name: `${key}`, color: `${this._color}` });
+            tag.add();
+          }
+        });
+
+        option.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            retracts();
+            if (activeTags.indexOf(key) === -1) {
+              activeTags.push(key);
+              console.log(activeTags);
+              let tag = new Tag({ name: `${key}`, color: `${this._color}` });
+              tag.add();
+            }
+          }
+        });
       });
-    });
+    };
+    createOptions(this._options);
 
     descriptionContainer.append(description);
     descriptionContainer.append(search);
@@ -78,6 +89,7 @@ class Listbox {
       listbox.classList.remove("not-displayed");
       this._state = "deployed";
       listboxChevron.classList.add("u-turn");
+      createOptions(this._options);
     };
 
     let retracts = () => {
@@ -149,6 +161,13 @@ class Listbox {
       } else if (e.key === "Escape") {
         retracts();
       }
+    });
+
+    search.addEventListener("keyup", (e) => {
+      e.stopPropagation();
+      listbox.innerHTML = "";
+      let filteredOptions = this._options.filter((option) => option.includes(search.value));
+      createOptions(filteredOptions);
     });
 
     container.append(descriptionContainer);

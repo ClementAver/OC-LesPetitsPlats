@@ -1,8 +1,9 @@
 // data > données métier.
 let instanciatedRecipes = [];
 recipes.forEach((recipe) => instanciatedRecipes.push(new Recipe(recipe)));
-
 // console.log(instanciatedRecipes);
+
+let activeTags = [];
 
 function init() {
   /*
