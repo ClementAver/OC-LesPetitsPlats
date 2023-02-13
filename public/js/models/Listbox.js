@@ -50,15 +50,15 @@ class Listbox {
 
       option.addEventListener("click", () => {
         retracts();
-        console.log(option.textContent);
-        Tag.add(`${key}`, `${this._color}`);
+        let tag = new Tag({ name: `${key}`, color: `${this._color}` });
+        tag.add();
       });
 
       option.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           retracts();
-          console.log(option.textContent);
-          Tag.add(`${key}`, `${this._color}`);
+          let tag = new Tag({ name: `${key}`, color: `${this._color}` });
+          tag.add();
         }
       });
     });

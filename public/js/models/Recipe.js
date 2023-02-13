@@ -1,5 +1,14 @@
 class Recipe {
-  static card(recipe) {
+  //définir mon constructeur.
+  constructor(object) {
+    this._name = object.name;
+    this._ingredients = object.ingredients;
+    this._time = object.time;
+    this._description = object.description;
+    this._appliance = object.appliance;
+    this._utensils = object.utensils;
+  }
+  card() {
     const article = document.createElement("article");
     article.setAttribute("tabindex", "0");
     article.classList.add("card");
@@ -9,13 +18,13 @@ class Recipe {
 
     const header = document.createElement("div");
     const title = document.createElement("h2");
-    title.textContent = recipe.name;
+    title.textContent = this._name;
     const time = document.createElement("span");
-    time.innerHTML = `<i class="fa-sharp fa-regular fa-clock"></i> ${recipe.time} min`;
+    time.innerHTML = `<i class="fa-sharp fa-regular fa-clock"></i> ${this._time} min`;
 
     const content = document.createElement("div");
     const ingredients = document.createElement("ul");
-    recipe.ingredients.forEach((ingredient) => {
+    this._ingredients.forEach((ingredient) => {
       const li = document.createElement("li");
       if (ingredient.quantity) {
         if (ingredient.unit) {
@@ -31,7 +40,7 @@ class Recipe {
       ingredients.append(li);
     });
     const steps = document.createElement("div");
-    steps.textContent = recipe.description;
+    steps.textContent = this._description;
 
     header.append(title);
     header.append(time);

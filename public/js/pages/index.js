@@ -1,3 +1,10 @@
+let instanciatedRecipes = [];
+let sortedRecipes = [];
+let sortedIngredients = [];
+let sortedAppliances = [];
+recipes.forEach((recipe) => instanciatedRecipes.push(new Recipe(recipe)));
+console.log(instanciatedRecipes);
+
 function createsfilterListboxes() {
   //=//| filter division |\\=\\
   let filterDivision = document.querySelector(".filters");
@@ -12,13 +19,16 @@ function createsfilterListboxes() {
   filterDivision.appendChild(ingredientsContainer);
   filterDivision.appendChild(appliancesContainer);
   filterDivision.appendChild(utensilsContainer);
-
-  //=//| recipes section |\\=\\
-  recipes.forEach((recipe) => Recipe.card(recipe));
 }
 
 function init() {
+  let search = new Search(instanciatedRecipes);
+  search.search();
+  console.log(sortedRecipes);
   createsfilterListboxes();
+
+  // écouteur de ma barre de recherche principale ici,
+  // mais les écouteurs des tags dans les tags, où sera appelée la méthode search de l'instance de search.
 }
 
 init();
