@@ -3,33 +3,31 @@
   @include b-r;
   width: fit-content;
   min-width: 170px;
-  max-width: 650px;
   height: fit-content;
-  max-height: 400px;
 
   @media screen and (max-width: 768px) {
     width: 100%;
     max-width: none;
   }
 
-  & > div:first-child {
+  > div:first-child {
     @include flex(row, nowrap);
     justify-content: space-between;
     align-items: baseline;
 
-    & span {
+    span {
       font-weight: 700;
       padding: 1rem;
       cursor: pointer;
     }
 
-    & i {
+    i {
       transition: transform 0.2s ease-out;
       padding: 1rem;
     }
   }
 
-  & input {
+  input {
     @include b-r;
     @include ellipsis;
     display: block;
@@ -48,26 +46,26 @@
   }
 
   ul {
-    @include flex(column, wrap);
+    display: grid;
+
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    overflow-y: auto;
+
     gap: 0.5rem;
+    max-width: 650px;
+    max-height: 350px;
+    margin: 0.5rem 0 1rem;
+
+    &.not-displayed {
+      display: none;
+    }
   }
 }
 
 .option {
-  display: none;
+  @include ellipsis;
   cursor: pointer;
   user-select: none;
   padding: 0 1rem;
-
-  &:first-child {
-    margin-top: 1rem;
-  }
-
-  &:last-child {
-    margin-bottom: 1rem;
-  }
-
-  &.displayed {
-    display: block;
-  }
+  line-height: 1.5;
 }

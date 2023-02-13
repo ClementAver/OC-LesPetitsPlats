@@ -27,6 +27,8 @@ class Search {
           this._utensils.push(utensil);
         }
       });
+      // appends the recipe card into the DOM.
+      recipe.card();
     });
 
     // test unit - start

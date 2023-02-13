@@ -33,7 +33,7 @@ class Listbox {
     listbox.setAttribute("role", "listbox");
     listbox.setAttribute("aria-expanded", "false");
     listbox.setAttribute("id", `${this._id}`);
-    listbox.classList.add("listbox");
+    listbox.classList.add("listbox", "not-displayed");
 
     const listboxChevron = document.createElement("i");
     listboxChevron.classList.add("fa-sharp", "fa-solid", "fa-chevron-down");
@@ -75,9 +75,7 @@ class Listbox {
       search.value = "";
       const options = document.querySelectorAll(`#${this._id} [role="option"]`);
       listbox.setAttribute("aria-expanded", "true");
-      options.forEach((key) => {
-        key.classList.add("displayed");
-      });
+      listbox.classList.remove("not-displayed");
       this._state = "deployed";
       listboxChevron.classList.add("u-turn");
     };
@@ -89,9 +87,7 @@ class Listbox {
       search.setAttribute("tabindex", "-1");
       const options = document.querySelectorAll(`#${this._id} [role="option"]`);
       listbox.setAttribute("aria-expanded", "false");
-      options.forEach((key) => {
-        key.classList.remove("displayed");
-      });
+      listbox.classList.add("not-displayed");
       this._state = "retracted";
       listboxChevron.classList.remove("u-turn");
     };
