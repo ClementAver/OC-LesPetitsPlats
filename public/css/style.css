@@ -178,6 +178,10 @@ h1 {
   transform: rotate(180deg);
 }
 
+.box-shadow {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -405,11 +409,18 @@ form.search-bar input {
   font-family: "Lato", sans-serif;
   font-size: 1.125rem;
 }
+form.search-bar button {
+  width: fit-content;
+  height: fit-content;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  margin: 0 1rem;
+  padding: 0;
+}
 form.search-bar svg {
   width: 2.2rem;
   height: 2.2rem;
   min-width: 2.2rem;
-  margin: 0 1rem;
 }
 
 .tag {

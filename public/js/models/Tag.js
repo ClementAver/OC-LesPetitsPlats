@@ -18,6 +18,7 @@ class Tag {
       let tag = activeTags.indexOf(this._name);
       activeTags.splice(tag, 1);
       console.log(activeTags);
+      mainSearchBar._search.search();
     });
 
     div.addEventListener("keydown", (e) => {
@@ -26,6 +27,7 @@ class Tag {
         let tag = activeTags.indexOf(this._name);
         activeTags.splice(tag, 1);
         console.log(activeTags);
+        mainSearchBar._search.search();
       }
     });
   }

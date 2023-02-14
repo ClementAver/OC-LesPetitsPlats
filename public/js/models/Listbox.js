@@ -39,6 +39,7 @@ class Listbox {
     listboxChevron.classList.add("fa-sharp", "fa-solid", "fa-chevron-down");
 
     let createOptions = (array) => {
+      listbox.innerHTML = "";
       array.forEach((key) => {
         let formatted = key.replace(/ /g, "").toLowerCase();
         const option = document.createElement("li");
@@ -79,6 +80,7 @@ class Listbox {
     descriptionContainer.append(listboxChevron);
 
     let deploys = () => {
+      container.classList.add("box-shadow");
       description.classList.add("sr-only");
       description.setAttribute("tabindex", "-1");
       search.classList.remove("sr-only");
@@ -89,10 +91,11 @@ class Listbox {
       listbox.classList.remove("not-displayed");
       this._state = "deployed";
       listboxChevron.classList.add("u-turn");
-      createOptions(this._options);
+      // createOptions(this._options);
     };
 
     let retracts = () => {
+      container.classList.remove("box-shadow");
       description.classList.remove("sr-only");
       description.setAttribute("tabindex", "0");
       search.classList.add("sr-only");
@@ -165,7 +168,6 @@ class Listbox {
 
     search.addEventListener("keyup", (e) => {
       e.stopPropagation();
-      listbox.innerHTML = "";
       let filteredOptions = this._options.filter((option) => option.includes(search.value));
       createOptions(filteredOptions);
     });

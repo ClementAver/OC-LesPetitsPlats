@@ -3,37 +3,70 @@ class Search {
     this._recipes = recipes;
     this._sortedRecipes = [];
     this._searchBar = "";
+    // this._searchTag = false;
     this._ingredients = [];
     this._appliances = [];
     this._utensils = [];
   }
 
   search() {
-    // fills the tags arrays with sorted recipes datas (1st line "this._recipes" to be replaced with "this._sortedRecipes").
-    this._recipes.forEach((recipe) => {
-      // fills this._ingredients.
-      recipe._ingredients.forEach((ingredient) => {
-        if (this._ingredients.indexOf(ingredient.ingredient) === -1) {
-          this._ingredients.push(ingredient.ingredient);
-        }
-      });
-      // fills this._appliances.
-      if (this._appliances.indexOf(recipe._appliance) === -1) {
-        this._appliances.push(recipe._appliance);
-      }
-      // fills this._utensils.
-      recipe._utensils.forEach((utensil) => {
-        if (this._utensils.indexOf(utensil) === -1) {
-          this._utensils.push(utensil);
-        }
-      });
-      // appends the recipe card into the DOM.
-      recipe.card();
-    });
+    console.log("search");
+    this._searchBar = document.getElementById("main-bar").value;
 
+    let DOMFrom = (array) => {
+      console.log("DOMFrom");
+      let recipesSection = document.querySelector(".recipes");
+      recipesSection.innerHTML = "";
+
+      this._ingredients = [];
+      this._appliances = [];
+      this._utensils = [];
+
+      // fills the tags arrays with sorted recipes datas.
+      array.forEach((recipe) => {
+        // fills this._ingredients.
+        recipe._ingredients.forEach((ingredient) => {
+          if (this._ingredients.indexOf(ingredient.ingredient) === -1) {
+            this._ingredients.push(ingredient.ingredient);
+          }
+        });
+
+        // fills this._appliances.
+        if (this._appliances.indexOf(recipe._appliance) === -1) {
+          this._appliances.push(recipe._appliance);
+        }
+
+        // fills this._utensils.
+        recipe._utensils.forEach((utensil) => {
+          if (this._utensils.indexOf(utensil) === -1) {
+            this._utensils.push(utensil);
+          }
+        });
+
+        // appends the recipe card into the DOM.
+        recipe.card();
+      });
+    };
+
+    if (this._searchBar === "") {
+      this._sortedRecipes = this._recipes;
+      DOMFrom(this._sortedRecipes);
+    } else {
+      this._sortedRecipes = this._recipes.filter((recipe) => recipe._name.includes(this._searchBar));
+
+      if (activeTags.indexOf(this._searchBar) === -1) {
+        activeTags.push(this._searchBar);
+        console.log(activeTags);
+        let tag = new Tag({ name: this._searchBar, color: "#7e7e7e" });
+        tag.add();
+      }
+      DOMFrom(this._sortedRecipes);
+    }
+
+    /*
     // test unit - start
     console.log("----> sorted recipes from instanciated ones :");
-    console.log(this._recipes);
+    console.log(this._sortedRecipes);
     console.log("----> sorted ingredients from sorted recipes :");
     console.log(this._ingredients);
     console.log("----> sorted appliances from sorted recipes :");
@@ -41,9 +74,11 @@ class Search {
     console.log("----> sorted utensils from sorted recipes :");
     console.log(this._utensils);
     // test unit - end
+    */
 
     //=//| filter division |\\=\\
     let filterDivision = document.querySelector(".filters");
+    filterDivision.innerHTML = "";
 
     let ingredients = new Listbox({ label: "Ingrédients", placeholder: "Rechercher un ingrédient", id: "ingredients", options: this._ingredients, color: "#3282f7" });
     let ingredientsContainer = ingredients.createListboxNode();
