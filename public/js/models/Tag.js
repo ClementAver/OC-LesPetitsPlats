@@ -12,21 +12,40 @@ class Tag {
     div.classList.add("tag");
     div.innerHTML = `<span>${this._name}</span><i class="fa-sharp fa-regular fa-circle-xmark"></i>`;
     tags.append(div);
+    mainSearchBar._search.search();
+
+    let interact = () => {
+      let tag = "";
+      let task = (arg) => {
+        tag = arg.indexOf(this._name);
+        arg.splice(tag, 1);
+        console.log(arg);
+      };
+      switch (this._color) {
+        case "#7e7e7e":
+          task(searchTags);
+          break;
+        case "#3282f7":
+          task(ingredientsTags);
+          break;
+        case "#68d9a4":
+          task(appliancesTags);
+          break;
+        case "#ed6454":
+          task(utensilsTags);
+      }
+    };
 
     div.addEventListener("click", () => {
       tags.removeChild(div);
-      let tag = activeTags.indexOf(this._name);
-      activeTags.splice(tag, 1);
-      console.log(activeTags);
+      interact();
       mainSearchBar._search.search();
     });
 
     div.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         tags.removeChild(div);
-        let tag = activeTags.indexOf(this._name);
-        activeTags.splice(tag, 1);
-        console.log(activeTags);
+        interact();
         mainSearchBar._search.search();
       }
     });

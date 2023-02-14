@@ -50,25 +50,40 @@ class Listbox {
         option.classList.add("option");
         listbox.append(option);
 
+        let interact = () => {
+          let tag = "";
+          let task = (arg) => {
+            if (arg.indexOf(key) === -1) {
+              arg.push(key);
+              console.log(arg);
+              let tag = new Tag({ name: `${key}`, color: `${this._color}` });
+              tag.add();
+            }
+          };
+          switch (this._color) {
+            case "#3282f7":
+              task(ingredientsTags);
+              break;
+            case "#68d9a4":
+              task(appliancesTags);
+              break;
+            case "#ed6454":
+              task(utensilsTags);
+          }
+        };
+
         option.addEventListener("click", () => {
           retracts();
-          if (activeTags.indexOf(key) === -1) {
-            activeTags.push(key);
-            console.log(activeTags);
-            let tag = new Tag({ name: `${key}`, color: `${this._color}` });
-            tag.add();
-          }
+          // creates a tag.
+          let tag = "";
+          interact();
         });
 
         option.addEventListener("keydown", (e) => {
           if (e.key === "Enter") {
-            retracts();
-            if (activeTags.indexOf(key) === -1) {
-              activeTags.push(key);
-              console.log(activeTags);
-              let tag = new Tag({ name: `${key}`, color: `${this._color}` });
-              tag.add();
-            }
+            // creates a tag.
+            let tag = "";
+            interact();
           }
         });
       });

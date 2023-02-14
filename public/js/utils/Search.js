@@ -53,11 +53,10 @@ class Search {
       DOMFrom(this._sortedRecipes);
     } else {
       this._sortedRecipes = this._recipes.filter((recipe) => recipe._name.includes(this._searchBar));
-
-      if (activeTags.indexOf(this._searchBar) === -1) {
-        activeTags.push(this._searchBar);
-        console.log(activeTags);
-        let tag = new Tag({ name: this._searchBar, color: "#7e7e7e" });
+      if (searchTags.indexOf(this._searchBar) === -1) {
+        searchTags.push(this._searchBar);
+        console.log(searchTags);
+        let tag = new Tag({ name: `${this._searchBar}`, color: "#7e7e7e" });
         tag.add();
       }
       DOMFrom(this._sortedRecipes);
