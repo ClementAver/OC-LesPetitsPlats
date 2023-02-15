@@ -19,7 +19,6 @@ class Tag {
       let task = (arg) => {
         tag = arg.indexOf(this._name);
         arg.splice(tag, 1);
-        console.log(arg);
       };
       switch (this._color) {
         case "#7e7e7e":

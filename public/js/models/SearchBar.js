@@ -33,6 +33,11 @@ class SearchBar {
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
+      if (searchTags.indexOf(input.value) === -1 && input.value.replaceAll(" ", "") !== "") {
+        searchTags.push(input.value);
+        let tag = new Tag({ name: `${input.value}`, color: "#7e7e7e" });
+        tag.add();
+      }
       this._search.search();
       input.value = "";
     });

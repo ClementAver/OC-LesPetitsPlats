@@ -55,7 +55,6 @@ class Listbox {
           let task = (arg) => {
             if (arg.indexOf(key) === -1) {
               arg.push(key);
-              console.log(arg);
               let tag = new Tag({ name: `${key}`, color: `${this._color}` });
               tag.add();
             }
@@ -175,7 +174,6 @@ class Listbox {
       e.stopPropagation();
       if (e.key === "Enter") {
         retracts();
-        console.log(search.value);
       } else if (e.key === "Escape") {
         retracts();
       }
