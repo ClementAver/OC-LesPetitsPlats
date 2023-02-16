@@ -1,4 +1,7 @@
-class Search {
+import Listbox from "../models/Listbox.js";
+import { searchTags, ingredientsTags, appliancesTags, utensilsTags } from "../pages/index.js";
+
+export default class Search {
   constructor(recipes) {
     this._recipes = recipes;
     this._sortedRecipes = [];

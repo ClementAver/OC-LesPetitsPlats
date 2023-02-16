@@ -1,4 +1,7 @@
-class Tag {
+import { searchTags, ingredientsTags, appliancesTags, utensilsTags } from "../pages/index.js";
+import { mainSearchBar } from "../pages/index.js";
+
+export default class Tag {
   constructor(object) {
     this._name = object.name;
     this._color = object.color;

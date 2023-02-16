@@ -1,4 +1,8 @@
-class SearchBar {
+import Search from "../utils/Search.js";
+import Tag from "../models/Tag.js";
+import { searchTags } from "../pages/index.js";
+
+export default class SearchBar {
   constructor(placeholder, array) {
     this._placeholder = placeholder;
     this._search = new Search(array);

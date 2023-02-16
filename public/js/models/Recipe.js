@@ -1,4 +1,4 @@
-class Recipe {
+export default class Recipe {
   //définir mon constructeur.
   constructor(object) {
     this._name = object.name;

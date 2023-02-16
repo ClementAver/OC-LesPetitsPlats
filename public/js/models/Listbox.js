@@ -1,5 +1,8 @@
+import Tag from "../models/Tag.js";
+import { ingredientsTags, appliancesTags, utensilsTags } from "../pages/index.js";
+
 // argument e.g. {label : "Gender", id : "gender", options : ["male", "female", "non binary"], color: #ffffff}.
-class Listbox {
+export default class Listbox {
   constructor(object) {
     this._label = object.label;
     this._placeholder = object.placeholder;
