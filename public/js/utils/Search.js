@@ -112,6 +112,10 @@ class Search {
       recipe.card();
     });
 
+    //=//| results division |\\=\\
+    let results = document.querySelector(".results");
+    results.textContent = `${this._sortedRecipes.length} résultat(s)`;
+
     //=//| filter division |\\=\\
     // retrieves the filter division then empties it.
     let filterDivision = document.querySelector(".filters");

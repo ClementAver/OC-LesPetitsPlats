@@ -254,6 +254,12 @@ header svg {
   gap: 50px;
 }
 
+.results {
+  margin: 0.5rem auto 0.5rem;
+  padding-right: 1rem;
+  text-align: end;
+}
+
 .card {
   display: flex;
   flex-flow: column nowrap;
