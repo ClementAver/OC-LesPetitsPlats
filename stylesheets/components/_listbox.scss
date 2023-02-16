@@ -59,6 +59,16 @@
     &.not-displayed {
       display: none;
     }
+
+    &::-webkit-scrollbar {
+      width: 0.5rem; /* Mostly for vertical scrollbars */
+      height: 0.5rem; /* Mostly for horizontal scrollbars */
+    }
+
+    &::-webkit-scrollbar-thumb {
+      /* Foreground */
+      background: rgba(white, 0.2);
+    }
   }
 }
 

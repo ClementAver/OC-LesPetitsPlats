@@ -384,6 +384,14 @@ header svg {
 .listbox-container ul.not-displayed {
   display: none;
 }
+.listbox-container ul::-webkit-scrollbar {
+  width: 0.5rem; /* Mostly for vertical scrollbars */
+  height: 0.5rem; /* Mostly for horizontal scrollbars */
+}
+.listbox-container ul::-webkit-scrollbar-thumb {
+  /* Foreground */
+  background: rgba(255, 255, 255, 0.2);
+}
 
 .option {
   overflow: hidden;
