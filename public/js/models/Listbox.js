@@ -94,7 +94,7 @@ class Listbox {
     descriptionContainer.append(listboxChevron);
 
     let deploys = () => {
-      container.classList.add("box-shadow");
+      container.classList.add("box-shadow", "deployed");
       description.classList.add("sr-only");
       description.setAttribute("tabindex", "-1");
       search.classList.remove("sr-only");
@@ -109,7 +109,7 @@ class Listbox {
     };
 
     let retracts = () => {
-      container.classList.remove("box-shadow");
+      container.classList.remove("box-shadow", "deployed");
       description.classList.remove("sr-only");
       description.setAttribute("tabindex", "0");
       search.classList.add("sr-only");
