@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sass": "sass ./stylesheets/main.scss:./public/css/style.css -w --style expanded"
+    "sass": "sass ./stylesheets/main.scss:./public/css/style.css -w --style expanded",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
   "homepage": "https://github.com/ClementAver/OC-LesPetitsPlats#readme",
   "dependencies": {
     "sass": "^1.58.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.34.0"
   }
 }

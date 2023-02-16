@@ -12,7 +12,6 @@ export default class Search {
   }
 
   search() {
-    console.clear();
     this._sortedRecipes = [];
     this._searchBar = document.getElementById("main-bar").value;
     this._ingredients = [];

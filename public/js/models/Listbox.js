@@ -54,7 +54,6 @@ export default class Listbox {
         listbox.append(option);
 
         let interact = () => {
-          let tag = "";
           let task = (arg) => {
             if (arg.indexOf(key) === -1) {
               arg.push(key);
@@ -76,15 +75,12 @@ export default class Listbox {
 
         option.addEventListener("click", () => {
           retracts();
-          // creates a tag.
-          let tag = "";
           interact();
         });
 
         option.addEventListener("keydown", (e) => {
           if (e.key === "Enter") {
-            // creates a tag.
-            let tag = "";
+            retracts();
             interact();
           }
         });
@@ -97,13 +93,12 @@ export default class Listbox {
     descriptionContainer.append(listboxChevron);
 
     let deploys = () => {
-      container.classList.add("box-shadow", "deployed");
+      container.classList.add("box-shadow");
       description.classList.add("sr-only");
       description.setAttribute("tabindex", "-1");
       search.classList.remove("sr-only");
       search.setAttribute("tabindex", "0");
       search.value = "";
-      const options = document.querySelectorAll(`#${this._id} [role="option"]`);
       listbox.setAttribute("aria-expanded", "true");
       listbox.classList.remove("not-displayed");
       this._state = "deployed";
@@ -112,12 +107,11 @@ export default class Listbox {
     };
 
     let retracts = () => {
-      container.classList.remove("box-shadow", "deployed");
+      container.classList.remove("box-shadow");
       description.classList.remove("sr-only");
       description.setAttribute("tabindex", "0");
       search.classList.add("sr-only");
       search.setAttribute("tabindex", "-1");
-      const options = document.querySelectorAll(`#${this._id} [role="option"]`);
       listbox.setAttribute("aria-expanded", "false");
       listbox.classList.add("not-displayed");
       this._state = "retracted";
@@ -138,8 +132,7 @@ export default class Listbox {
           }
           break;
         case "deployed":
-          if (e.target.closest(`#container-${this._id}`)) {
-          } else {
+          if (!e.target.closest(`#container-${this._id}`)) {
             retracts();
           }
       }
@@ -155,8 +148,7 @@ export default class Listbox {
             }
             break;
           case "deployed":
-            if (e.target.closest(`#container-${this._id}`)) {
-            } else {
+            if (!e.target.closest(`#container-${this._id}`)) {
               retracts();
             }
         }
@@ -184,7 +176,7 @@ export default class Listbox {
 
     search.addEventListener("keyup", (e) => {
       e.stopPropagation();
-      let filteredOptions = this._options.filter((option) => option.includes(search.value));
+      let filteredOptions = this._options.filter((option) => option.toLowerCase().includes(search.value.toLowerCase()));
       createOptions(filteredOptions);
     });
 

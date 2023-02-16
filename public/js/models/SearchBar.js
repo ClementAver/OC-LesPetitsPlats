@@ -52,7 +52,7 @@ export default class SearchBar {
       }
     });
 
-    button.addEventListener("focusout", (e) => {
+    button.addEventListener("focusout", () => {
       input.value = "";
     });
   }
