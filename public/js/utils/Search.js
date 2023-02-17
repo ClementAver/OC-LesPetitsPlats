@@ -12,6 +12,8 @@ export default class Search {
   }
 
   search() {
+    console.clear();
+
     this._sortedRecipes = [];
     this._searchBar = document.getElementById("main-bar").value;
     this._ingredients = [];
@@ -28,7 +30,13 @@ export default class Search {
 
         temp.forEach((recipe) => {
           let noCaseTag = new RegExp(tag, "i");
-          noCaseTag.test(recipe._name) && tempB.indexOf(recipe) === -1 ? tempB.push(recipe) : false;
+          let matched = "";
+          recipe._ingredients.forEach((ingredient) => {
+            noCaseTag.test(ingredient.ingredient) ? (matched = "yes") : false;
+          });
+          //
+          (noCaseTag.test(recipe._name) || noCaseTag.test(recipe._description) || matched === "yes") && tempB.indexOf(recipe) === -1 ? tempB.push(recipe) : false;
+          //
         });
         temp = tempB;
       });
@@ -139,7 +147,6 @@ export default class Search {
     filterDivision.appendChild(utensilsContainer);
 
     // test unit - start
-    // console.clear();
     // console.log("____________________");
     // console.log("----> searchTags :");
     // console.log(searchTags);
