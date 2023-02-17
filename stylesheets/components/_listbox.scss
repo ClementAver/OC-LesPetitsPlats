@@ -68,6 +68,9 @@
     &::-webkit-scrollbar-thumb {
       /* Foreground */
       background: rgba(white, 0.2);
+      &:hover {
+        background: rgba(white, 0.5);
+      }
     }
   }
 }

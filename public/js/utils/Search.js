@@ -12,7 +12,7 @@ export default class Search {
   }
 
   search() {
-    console.clear();
+    // console.clear();
 
     this._sortedRecipes = [];
     this._searchBar = document.getElementById("main-bar").value;
@@ -34,9 +34,8 @@ export default class Search {
           recipe._ingredients.forEach((ingredient) => {
             noCaseTag.test(ingredient.ingredient) ? (matched = "yes") : false;
           });
-          //
+          // matches if regex tests true on either name, ingredients OR description AND isn't already sorted.
           (noCaseTag.test(recipe._name) || noCaseTag.test(recipe._description) || matched === "yes") && tempB.indexOf(recipe) === -1 ? tempB.push(recipe) : false;
-          //
         });
         temp = tempB;
       });
@@ -50,7 +49,7 @@ export default class Search {
         let tempB = [];
         temp.forEach((recipe) => {
           recipe._ingredients.forEach((ingredient) => {
-            if (ingredient.ingredient.match(tag) && tempB.indexOf(recipe) === -1) {
+            if (ingredient.ingredient.includes(tag) && tempB.indexOf(recipe) === -1) {
               tempB.push(recipe);
             }
           });
@@ -65,7 +64,7 @@ export default class Search {
       let temp = [];
       appliancesTags.forEach((tag) => {
         this._sortedRecipes.forEach((recipe) => {
-          if (recipe._appliance.match(tag) && temp.indexOf(recipe) === -1) {
+          if (recipe._appliance.includes(tag) && temp.indexOf(recipe) === -1) {
             temp.push(recipe);
           }
         });
@@ -80,7 +79,7 @@ export default class Search {
         let tempB = [];
         temp.forEach((recipe) => {
           recipe._utensils.forEach((utensil) => {
-            if (utensil.match(tag) && tempB.indexOf(recipe) === -1) {
+            if (utensil.includes(tag) && tempB.indexOf(recipe) === -1) {
               tempB.push(recipe);
             }
           });
@@ -166,8 +165,8 @@ export default class Search {
     // console.log("----> this._utensils :");
     // console.log(this._utensils);
     // console.log("         ---        ");
-    console.log("----> this._sortedRecipes :");
-    console.log(this._sortedRecipes);
+    // console.log("----> this._sortedRecipes :");
+    // console.log(this._sortedRecipes);
     // test unit - end
   }
 }
