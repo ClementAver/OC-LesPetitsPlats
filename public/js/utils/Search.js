@@ -25,8 +25,10 @@ export default class Search {
       let temp = this._sortedRecipes;
       searchTags.forEach((tag) => {
         let tempB = [];
+
         temp.forEach((recipe) => {
-          recipe._name.includes(tag) && tempB.indexOf(recipe) === -1 ? tempB.push(recipe) : false;
+          let noCaseTag = new RegExp(tag, "i");
+          noCaseTag.test(recipe._name) && tempB.indexOf(recipe) === -1 ? tempB.push(recipe) : false;
         });
         temp = tempB;
       });
@@ -137,7 +139,7 @@ export default class Search {
     filterDivision.appendChild(utensilsContainer);
 
     // test unit - start
-    console.clear();
+    // console.clear();
     // console.log("____________________");
     // console.log("----> searchTags :");
     // console.log(searchTags);

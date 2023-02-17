@@ -103,7 +103,7 @@ export default class Listbox {
       listbox.classList.remove("not-displayed");
       this._state = "deployed";
       listboxChevron.classList.add("u-turn");
-      // createOptions(this._options);
+      createOptions(this._options);
     };
 
     let retracts = () => {
