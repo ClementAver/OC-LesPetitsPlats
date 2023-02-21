@@ -55,11 +55,9 @@ export default class Listbox {
 
         let interact = () => {
           let task = (arg) => {
-            if (arg.indexOf(key) === -1) {
-              arg.push(key);
-              let tag = new Tag({ name: `${key}`, color: `${this._color}` });
-              tag.add();
-            }
+            arg.add(key);
+            let tag = new Tag({ name: `${key}`, color: `${this._color}` });
+            tag.add();
           };
           switch (this._color) {
             case "#3282f7":

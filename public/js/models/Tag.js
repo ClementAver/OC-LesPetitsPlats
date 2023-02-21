@@ -1,4 +1,4 @@
-import { searchTags, ingredientsTags, appliancesTags, utensilsTags } from "../pages/index.js";
+import { searchBarValue, ingredientsTags, appliancesTags, utensilsTags } from "../pages/index.js";
 import { mainSearchBar } from "../pages/index.js";
 
 export default class Tag {
@@ -18,14 +18,12 @@ export default class Tag {
     mainSearchBar._search.search();
 
     let interact = () => {
-      let tag = "";
       let task = (arg) => {
-        tag = arg.indexOf(this._name);
-        arg.splice(tag, 1);
+        arg.delete(this._name);
       };
       switch (this._color) {
         case "#7e7e7e":
-          task(searchTags);
+          task(searchBarValue);
           break;
         case "#3282f7":
           task(ingredientsTags);

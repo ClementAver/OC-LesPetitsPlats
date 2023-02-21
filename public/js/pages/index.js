@@ -10,12 +10,12 @@ recipes.forEach((recipe) => instanciatedRecipes.push(new Recipe(recipe)));
 
 export let mainSearchBar = new SearchBar("Rechercher une recette", instanciatedRecipes);
 
-let searchTags = [];
-let ingredientsTags = [];
-let appliancesTags = [];
-let utensilsTags = [];
+let searchBarValue = new Set();
+let ingredientsTags = new Set();
+let appliancesTags = new Set();
+let utensilsTags = new Set();
 
-export { searchTags, ingredientsTags, appliancesTags, utensilsTags };
+export { searchBarValue, ingredientsTags, appliancesTags, utensilsTags };
 
 function init() {
   mainSearchBar.create();

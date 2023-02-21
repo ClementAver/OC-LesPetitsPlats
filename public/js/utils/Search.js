@@ -1,14 +1,14 @@
 import Listbox from "../models/Listbox.js";
-import { searchTags, ingredientsTags, appliancesTags, utensilsTags } from "../pages/index.js";
+import { searchBarValue, ingredientsTags, appliancesTags, utensilsTags } from "../pages/index.js";
 
 export default class Search {
   constructor(recipes) {
     this._recipes = recipes;
     this._sortedRecipes = [];
     this._searchBar = "";
-    this._ingredients = [];
-    this._appliances = [];
-    this._utensils = [];
+    this._ingredients = new Set();
+    this._appliances = new Set();
+    this._utensils = new Set();
   }
 
   search() {
@@ -16,16 +16,16 @@ export default class Search {
 
     this._sortedRecipes = [];
     this._searchBar = document.getElementById("main-bar").value;
-    this._ingredients = [];
-    this._appliances = [];
-    this._utensils = [];
+    this._ingredients.clear();
+    this._appliances.clear();
+    this._utensils.clear();
 
     this._sortedRecipes = this._recipes;
 
-    // if the searchTags array contains at least one tag :
-    if (searchTags.length > 0) {
+    // if the searchBarValue set contains something :
+    if (searchBarValue.size > 0) {
       let temp = this._sortedRecipes;
-      searchTags.forEach((tag) => {
+      searchBarValue.forEach((tag) => {
         let tempB = [];
 
         temp.forEach((recipe) => {
@@ -43,7 +43,7 @@ export default class Search {
     }
 
     // if the ingredientsTags array contains at least one tag :
-    if (ingredientsTags.length > 0) {
+    if (ingredientsTags.size > 0) {
       let temp = this._sortedRecipes;
       ingredientsTags.forEach((tag) => {
         let tempB = [];
@@ -60,7 +60,7 @@ export default class Search {
     }
 
     // if the appliancesTags array contains at least one tag :
-    if (appliancesTags.length > 0) {
+    if (appliancesTags.size > 0) {
       let temp = [];
       appliancesTags.forEach((tag) => {
         this._sortedRecipes.forEach((recipe) => {
@@ -73,7 +73,7 @@ export default class Search {
     }
 
     // if the utensilsTags array contains at least one tag :
-    if (utensilsTags.length > 0) {
+    if (utensilsTags.size > 0) {
       let temp = this._sortedRecipes;
       utensilsTags.forEach((tag) => {
         let tempB = [];
@@ -101,21 +101,16 @@ export default class Search {
     this._sortedRecipes.forEach((recipe) => {
       // fills this._ingredients.
       recipe._ingredients.forEach((ingredient) => {
-        if (this._ingredients.indexOf(ingredient.ingredient) === -1) {
-          this._ingredients.push(ingredient.ingredient);
-        }
+        this._ingredients.add(ingredient.ingredient);
       });
 
       // fills this._appliances.
-      if (this._appliances.indexOf(recipe._appliance) === -1) {
-        this._appliances.push(recipe._appliance);
-      }
+
+      this._appliances.add(recipe._appliance);
 
       // fills this._utensils.
       recipe._utensils.forEach((utensil) => {
-        if (this._utensils.indexOf(utensil) === -1) {
-          this._utensils.push(utensil);
-        }
+        this._utensils.add(utensil);
       });
 
       //=//| recipes section |\\=\\
@@ -147,8 +142,8 @@ export default class Search {
 
     // test unit - start
     // console.log("____________________");
-    // console.log("----> searchTags :");
-    // console.log(searchTags);
+    // console.log("----> searchBarValue :");
+    // console.log(searchBarValue);
     // console.log("----> ingredientsTags :");
     // console.log(ingredientsTags);
     // console.log("----> appliancesTags :");
@@ -165,8 +160,8 @@ export default class Search {
     // console.log("----> this._utensils :");
     // console.log(this._utensils);
     // console.log("         ---        ");
-    // console.log("----> this._sortedRecipes :");
-    // console.log(this._sortedRecipes);
+    console.log("----> this._sortedRecipes :");
+    console.log(this._sortedRecipes);
     // test unit - end
   }
 }

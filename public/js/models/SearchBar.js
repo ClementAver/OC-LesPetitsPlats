@@ -1,6 +1,6 @@
 import Search from "../utils/Search.js";
 import Tag from "../models/Tag.js";
-import { searchTags } from "../pages/index.js";
+import { searchBarValue } from "../pages/index.js";
 
 export default class SearchBar {
   constructor(placeholder, array) {
@@ -37,8 +37,8 @@ export default class SearchBar {
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      if (searchTags.indexOf(input.value) === -1 && input.value.replaceAll(" ", "") !== "") {
-        searchTags.push(input.value);
+      if (input.value.replaceAll(" ", "") !== "") {
+        searchBarValue.add(input.value);
         let tag = new Tag({ name: `${input.value}`, color: "#7e7e7e" });
         tag.add();
       }
