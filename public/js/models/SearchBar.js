@@ -1,11 +1,8 @@
-import Search from "../utils/Search.js";
-import Tag from "../models/Tag.js";
-import { searchBarValue } from "../pages/index.js";
+import { MainsearchBarSubmitEvent } from "../pages/index.js";
 
 export default class SearchBar {
-  constructor(placeholder, array) {
+  constructor(placeholder) {
     this._placeholder = placeholder;
-    this._search = new Search(array);
   }
 
   create() {
@@ -27,33 +24,9 @@ export default class SearchBar {
     form.append(button);
     header.after(form);
 
-    this._search.search();
-
-    window.addEventListener("click", (e) => {
-      if (!e.target.closest(`form.search-bar`)) {
-        input.value = "";
-      }
-    });
-
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      if (input.value.replaceAll(" ", "") !== "") {
-        searchBarValue.add(input.value);
-        let tag = new Tag({ name: `${input.value}`, color: "#7e7e7e" });
-        tag.add();
-      }
-      this._search.search();
-      input.value = "";
-    });
-
-    input.addEventListener("keydown", (e) => {
-      if (e.shiftKey && e.key === "Tab") {
-        input.value = "";
-      }
-    });
-
-    button.addEventListener("focusout", () => {
-      input.value = "";
+      MainsearchBarSubmitEvent();
     });
   }
 }

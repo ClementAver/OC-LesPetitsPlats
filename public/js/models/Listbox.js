@@ -57,7 +57,7 @@ export default class Listbox {
           let task = (arg) => {
             arg.add(key);
             let tag = new Tag({ name: `${key}`, color: `${this._color}` });
-            tag.add();
+            tag.addToDOM();
           };
           switch (this._color) {
             case "#3282f7":
@@ -174,7 +174,8 @@ export default class Listbox {
 
     search.addEventListener("keyup", (e) => {
       e.stopPropagation();
-      let filteredOptions = this._options.filter((option) => option.toLowerCase().includes(search.value.toLowerCase()));
+      let filteredOptions = new Set();
+      this._options.forEach((option) => (option.toLowerCase().includes(search.value.toLowerCase()) ? filteredOptions.add(option) : false));
       createOptions(filteredOptions);
     });
 

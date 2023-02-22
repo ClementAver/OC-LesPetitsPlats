@@ -1,5 +1,5 @@
-import { searchBarValue, ingredientsTags, appliancesTags, utensilsTags } from "../pages/index.js";
-import { mainSearchBar } from "../pages/index.js";
+import { ingredientsTags, appliancesTags, utensilsTags } from "../pages/index.js";
+import { filterDOM } from "../pages/index.js";
 
 export default class Tag {
   constructor(object) {
@@ -7,7 +7,7 @@ export default class Tag {
     this._color = object.color;
   }
 
-  add() {
+  addToDOM() {
     const tags = document.querySelector(".tags");
     const div = document.createElement("div");
     div.setAttribute("tabindex", "0");
@@ -15,16 +15,13 @@ export default class Tag {
     div.classList.add("tag");
     div.innerHTML = `<span>${this._name}</span><i class="fa-sharp fa-regular fa-circle-xmark"></i>`;
     tags.append(div);
-    mainSearchBar._search.search();
+    filterDOM();
 
     let interact = () => {
       let task = (arg) => {
         arg.delete(this._name);
       };
       switch (this._color) {
-        case "#7e7e7e":
-          task(searchBarValue);
-          break;
         case "#3282f7":
           task(ingredientsTags);
           break;
@@ -39,14 +36,14 @@ export default class Tag {
     div.addEventListener("click", () => {
       tags.removeChild(div);
       interact();
-      mainSearchBar._search.search();
+      filterDOM();
     });
 
     div.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         tags.removeChild(div);
         interact();
-        mainSearchBar._search.search();
+        filterDOM();
       }
     });
   }

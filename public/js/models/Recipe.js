@@ -8,6 +8,7 @@ export default class Recipe {
     this._appliance = object.appliance;
     this._utensils = object.utensils;
   }
+
   card() {
     const article = document.createElement("article");
     article.setAttribute("tabindex", "0");
@@ -53,5 +54,27 @@ export default class Recipe {
 
     let recipesSection = document.querySelector(".recipes");
     recipesSection.append(article);
+  }
+
+  nameMatches(regex) {
+    let matches;
+    regex.test(this._name) ? (matches = true) : (matches = false);
+    return matches;
+  }
+
+  ingredientsMatches(regex) {
+    let matches;
+    this._ingredients.forEach((ingredient) => {
+      if (regex.test(ingredient.ingredient)) {
+        matches = true;
+      }
+    });
+    return matches;
+  }
+
+  descriptionMatches(regex) {
+    let matches;
+    regex.test(this._description) ? (matches = true) : (matches = false);
+    return matches;
   }
 }
