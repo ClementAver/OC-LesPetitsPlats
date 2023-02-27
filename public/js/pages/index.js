@@ -5,7 +5,7 @@ import Listbox from "../models/Listbox.js";
 import SearchBar from "../models/SearchBar.js";
 import Search from "../utils/Search.js";
 
-let searchBarValue = new Set();
+let searchBarValue = "";
 let ingredientsTags = new Set();
 let appliancesTags = new Set();
 let utensilsTags = new Set();
@@ -27,9 +27,10 @@ export let mainSearchBar = new SearchBar("Rechercher une recette");
 // callback of the search bar's submit event.
 export function MainsearchBarSubmitEvent() {
   let input = document.getElementById("main-bar");
-  searchBarValue.clear();
   if (input.value.replaceAll(" ", "") !== "") {
-    searchBarValue.add(input.value);
+    searchBarValue = input.value;
+  } else {
+    searchBarValue = "";
   }
   filterDOM();
 }
@@ -57,7 +58,9 @@ export function filterDOM() {
     recipe._ingredients.forEach((ingredient) => {
       ingredientsOptions.add(ingredient.ingredient);
     });
+
     appliancesOptions.add(recipe._appliance);
+
     recipe._utensils.forEach((utensil) => {
       utensilsOptions.add(utensil);
     });

@@ -6,14 +6,11 @@ export default class Search {
   }
 
   search() {
-    console.clear();
-
     let sortedRecipes = new Set(this._recipes);
 
-    if (searchBarValue.size > 0) {
+    if (searchBarValue !== "") {
       sortedRecipes.forEach((recipe) => {
-        // searchBarValue.values().next().value returns the first value of an iterator based on the searchBarValue set.
-        let noCaseTag = new RegExp(searchBarValue.values().next().value, "i");
+        let noCaseTag = new RegExp(searchBarValue, "i");
         // matches if regex tests true on either name, ingredients OR description AND isn't already sorted.
         recipe.nameMatches(noCaseTag) || recipe.ingredientsMatches(noCaseTag) || recipe.descriptionMatches(noCaseTag) ? true : sortedRecipes.delete(recipe);
       });
@@ -50,6 +47,7 @@ export default class Search {
     }
 
     // test unit - start
+    console.clear();
     console.log("----> sortedRecipes :");
     console.log(sortedRecipes);
     // test unit - end
