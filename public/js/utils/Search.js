@@ -1,14 +1,14 @@
-import { searchBarValue, ingredientsTags, appliancesTags, utensilsTags } from "../pages/index.js";
+import { ingredientsTags, appliancesTags, utensilsTags } from "../pages/index.js";
 
 export default class Search {
   constructor(recipes) {
     this._recipes = recipes;
   }
 
-  search() {
+  search(searchBarValue) {
     let sortedRecipes = new Set(this._recipes);
 
-    if (searchBarValue !== "") {
+    if (searchBarValue.length > 2) {
       sortedRecipes.forEach((recipe) => {
         let noCaseTag = new RegExp(searchBarValue, "i");
         // matches if regex tests true on either name, ingredients OR description AND isn't already sorted.
@@ -47,7 +47,7 @@ export default class Search {
     }
 
     // test unit - start
-    console.clear();
+    //console.clear();
     console.log("----> sortedRecipes :");
     console.log(sortedRecipes);
     // test unit - end

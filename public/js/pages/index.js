@@ -14,18 +14,14 @@ let ingredientsOptions = new Set();
 let appliancesOptions = new Set();
 let utensilsOptions = new Set();
 
-export { searchBarValue, ingredientsTags, appliancesTags, utensilsTags };
+export { ingredientsTags, appliancesTags, utensilsTags };
 
 // data > données métier.
 let instanciatedRecipes = [];
 recipes.forEach((recipe) => instanciatedRecipes.push(new Recipe(recipe)));
 
-//=//| search bar form |\\=\\
-// instanciates the search bar
-export let mainSearchBar = new SearchBar("Rechercher une recette");
-
 // callback of the search bar's submit event.
-export function MainsearchBarSubmitEvent() {
+function mainSearchBarSubmitEvent() {
   let input = document.getElementById("main-bar");
   if (input.value.replaceAll(" ", "") !== "") {
     searchBarValue = input.value;
@@ -35,10 +31,14 @@ export function MainsearchBarSubmitEvent() {
   filterDOM();
 }
 
-// instanciates the search algorithm.
-export let search = new Search(instanciatedRecipes);
+//=//| search bar form |\\=\\
+// instanciates the search bar
+export let mainSearchBar = new SearchBar("Rechercher une recette", mainSearchBarSubmitEvent);
 
-export function filterDOM() {
+// instanciates the search algorithm.
+let search = new Search(instanciatedRecipes);
+
+let filterDOM = () => {
   // retrieves the recipes section and empties it.
   let recipesSection = document.querySelector(".recipes");
   recipesSection.innerHTML = "";
@@ -47,7 +47,7 @@ export function filterDOM() {
   appliancesOptions.clear();
   utensilsOptions.clear();
 
-  let sortedRecipes = search.search();
+  let sortedRecipes = search.search(searchBarValue);
 
   /*
     for all sorted recipes :
@@ -80,18 +80,18 @@ export function filterDOM() {
   filterDivision.innerHTML = "";
 
   // the sets filled in above (ingredientsOptions,  appliancesOptions and utensilsOptions) are used to generate the options...
-  let ingredients = new Listbox({ label: "Ingrédients", placeholder: "Rechercher un ingrédient", id: "ingredients", options: ingredientsOptions, color: "#3282f7" });
+  let ingredients = new Listbox({ callback: filterDOM, tagsSet: ingredientsTags, label: "Ingrédients", placeholder: "Rechercher un ingrédient", id: "ingredients", options: ingredientsOptions, color: "#3282f7" });
   let ingredientsContainer = ingredients.createListboxNode();
-  let appliances = new Listbox({ label: "Appareils", placeholder: "Rechercher un appareil", id: "appliances", options: appliancesOptions, color: "#68d9a4" });
+  let appliances = new Listbox({ callback: filterDOM, tagsSet: appliancesTags, label: "Appareils", placeholder: "Rechercher un appareil", id: "appliances", options: appliancesOptions, color: "#68d9a4" });
   let appliancesContainer = appliances.createListboxNode();
-  let utensils = new Listbox({ label: "Ustensiles", placeholder: "Rechercher un ustensile", id: "utensils", options: utensilsOptions, color: "#ed6454" });
+  let utensils = new Listbox({ callback: filterDOM, tagsSet: utensilsTags, label: "Ustensiles", placeholder: "Rechercher un ustensile", id: "utensils", options: utensilsOptions, color: "#ed6454" });
   let utensilsContainer = utensils.createListboxNode();
 
   // ...then the listboxes are added to the DOM.
   filterDivision.appendChild(ingredientsContainer);
   filterDivision.appendChild(appliancesContainer);
   filterDivision.appendChild(utensilsContainer);
-}
+};
 
 function init() {
   mainSearchBar.create();

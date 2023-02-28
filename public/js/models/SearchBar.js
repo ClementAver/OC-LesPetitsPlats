@@ -1,8 +1,7 @@
-import { MainsearchBarSubmitEvent } from "../pages/index.js";
-
 export default class SearchBar {
-  constructor(placeholder) {
+  constructor(placeholder, callback) {
     this._placeholder = placeholder;
+    this._callback = callback;
   }
 
   create() {
@@ -26,7 +25,7 @@ export default class SearchBar {
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      MainsearchBarSubmitEvent();
+      this._callback();
     });
   }
 }
