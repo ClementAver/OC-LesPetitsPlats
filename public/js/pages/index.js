@@ -20,24 +20,6 @@ export { ingredientsTags, appliancesTags, utensilsTags };
 let instanciatedRecipes = [];
 recipes.forEach((recipe) => instanciatedRecipes.push(new Recipe(recipe)));
 
-// callback of the search bar's submit event.
-function mainSearchBarSubmitEvent() {
-  let input = document.getElementById("main-bar");
-  if (input.value.replaceAll(" ", "") !== "") {
-    searchBarValue = input.value;
-  } else {
-    searchBarValue = "";
-  }
-  filterDOM();
-}
-
-//=//| search bar form |\\=\\
-// instanciates the search bar
-export let mainSearchBar = new SearchBar("Rechercher une recette", mainSearchBarSubmitEvent);
-
-// instanciates the search algorithm.
-let search = new Search(instanciatedRecipes);
-
 let filterDOM = () => {
   // retrieves the recipes section and empties it.
   let recipesSection = document.querySelector(".recipes");
@@ -46,6 +28,13 @@ let filterDOM = () => {
   ingredientsOptions.clear();
   appliancesOptions.clear();
   utensilsOptions.clear();
+
+  let input = document.getElementById("main-bar");
+  if (input.value.replaceAll(" ", "") !== "") {
+    searchBarValue = input.value;
+  } else {
+    searchBarValue = "";
+  }
 
   let sortedRecipes = search.search(searchBarValue);
 
@@ -92,6 +81,13 @@ let filterDOM = () => {
   filterDivision.appendChild(appliancesContainer);
   filterDivision.appendChild(utensilsContainer);
 };
+
+//=//| search bar form |\\=\\
+// instanciates the search bar
+export let mainSearchBar = new SearchBar("Rechercher une recette", filterDOM);
+
+// instanciates the search algorithm.
+let search = new Search(instanciatedRecipes);
 
 function init() {
   mainSearchBar.create();
