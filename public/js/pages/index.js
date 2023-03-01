@@ -31,7 +31,7 @@ let filterDOM = () => {
 
   let input = document.getElementById("main-bar");
   if (input.value.replaceAll(" ", "") !== "" && input.value.length > 2) {
-    searchBarValue = input.value;
+    searchBarValue = input.value.toLowerCase();
   } else {
     searchBarValue = "";
   }
@@ -52,13 +52,13 @@ let filterDOM = () => {
   */
     sortedRecipes.forEach((recipe) => {
       recipe._ingredients.forEach((ingredient) => {
-        ingredientsOptions.add(ingredient.ingredient);
+        ingredientsOptions.add(ingredient.ingredient.toLowerCase());
       });
 
-      appliancesOptions.add(recipe._appliance);
+      appliancesOptions.add(recipe._appliance.toLowerCase());
 
       recipe._utensils.forEach((utensil) => {
-        utensilsOptions.add(utensil);
+        utensilsOptions.add(utensil.toLowerCase());
       });
 
       //=//| recipes section |\\=\\

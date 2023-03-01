@@ -26,6 +26,7 @@ export default class Recipe {
     const content = document.createElement("div");
     const ingredients = document.createElement("ul");
     this._ingredients.forEach((ingredient) => {
+      ingredient.ingredient = ingredient.ingredient.toLowerCase();
       const li = document.createElement("li");
       if (ingredient.quantity) {
         if (ingredient.unit) {
@@ -56,25 +57,15 @@ export default class Recipe {
     recipesSection.append(article);
   }
 
-  nameMatches(regex) {
-    let matches;
-    regex.test(this._name) ? (matches = true) : (matches = false);
-    return matches;
+  nameIncludes(string) {
+    return this._name.toLowerCase().includes(string.toLowerCase());
   }
 
-  ingredientsMatches(regex) {
-    let matches;
-    this._ingredients.forEach((ingredient) => {
-      if (regex.test(ingredient.ingredient)) {
-        matches = true;
-      }
-    });
-    return matches;
+  ingredientsIncludes(string) {
+    return this._ingredients.some((ingredient) => ingredient.ingredient.toLowerCase().includes(string.toLowerCase()));
   }
 
-  descriptionMatches(regex) {
-    let matches;
-    regex.test(this._description) ? (matches = true) : (matches = false);
-    return matches;
+  descriptionIncludes(string) {
+    return this._description.toLowerCase().includes(string.toLowerCase());
   }
 }
