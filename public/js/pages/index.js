@@ -30,7 +30,7 @@ let filterDOM = () => {
   utensilsOptions.clear();
 
   let input = document.getElementById("main-bar");
-  if (input.value.replaceAll(" ", "") !== "") {
+  if (input.value.replaceAll(" ", "") !== "" && input.value.length > 2) {
     searchBarValue = input.value;
   } else {
     searchBarValue = "";
@@ -38,48 +38,52 @@ let filterDOM = () => {
 
   let sortedRecipes = search.search(searchBarValue);
 
-  /*
-    for all sorted recipes :
-    1. fills the listboxes's options sets.
-    2. generates the recipe card into the DOM.
-  */
-  sortedRecipes.forEach((recipe) => {
-    recipe._ingredients.forEach((ingredient) => {
-      ingredientsOptions.add(ingredient.ingredient);
-    });
-
-    appliancesOptions.add(recipe._appliance);
-
-    recipe._utensils.forEach((utensil) => {
-      utensilsOptions.add(utensil);
-    });
-
-    //=//| recipes section |\\=\\
-    // generates the cards on the recipes section.
-    recipe.card();
-  });
-
   //=//| results division |\\=\\
   let results = document.querySelector(".results");
   results.textContent = `${sortedRecipes.size} résultat(s)`;
 
-  //=//| filter division |\\=\\
-  // retrieves the filter division then empties it.
-  let filterDivision = document.querySelector(".filters");
-  filterDivision.innerHTML = "";
+  if (sortedRecipes.size === 0) {
+    recipesSection.innerHTML = `<p>Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc."</p>`;
+  } else {
+    /*
+    for all sorted recipes :
+    1. fills the listboxes's options sets.
+    2. generates the recipe card into the DOM.
+  */
+    sortedRecipes.forEach((recipe) => {
+      recipe._ingredients.forEach((ingredient) => {
+        ingredientsOptions.add(ingredient.ingredient);
+      });
 
-  // the sets filled in above (ingredientsOptions,  appliancesOptions and utensilsOptions) are used to generate the options...
-  let ingredients = new Listbox({ callback: filterDOM, tagsSet: ingredientsTags, label: "Ingrédients", placeholder: "Rechercher un ingrédient", id: "ingredients", options: ingredientsOptions, color: "#3282f7" });
-  let ingredientsContainer = ingredients.createListboxNode();
-  let appliances = new Listbox({ callback: filterDOM, tagsSet: appliancesTags, label: "Appareils", placeholder: "Rechercher un appareil", id: "appliances", options: appliancesOptions, color: "#68d9a4" });
-  let appliancesContainer = appliances.createListboxNode();
-  let utensils = new Listbox({ callback: filterDOM, tagsSet: utensilsTags, label: "Ustensiles", placeholder: "Rechercher un ustensile", id: "utensils", options: utensilsOptions, color: "#ed6454" });
-  let utensilsContainer = utensils.createListboxNode();
+      appliancesOptions.add(recipe._appliance);
 
-  // ...then the listboxes are added to the DOM.
-  filterDivision.appendChild(ingredientsContainer);
-  filterDivision.appendChild(appliancesContainer);
-  filterDivision.appendChild(utensilsContainer);
+      recipe._utensils.forEach((utensil) => {
+        utensilsOptions.add(utensil);
+      });
+
+      //=//| recipes section |\\=\\
+      // generates the cards on the recipes section.
+      recipe.card();
+    });
+
+    //=//| filter division |\\=\\
+    // retrieves the filter division then empties it.
+    let filterDivision = document.querySelector(".filters");
+    filterDivision.innerHTML = "";
+
+    // the sets filled in above (ingredientsOptions,  appliancesOptions and utensilsOptions) are used to generate the options...
+    let ingredients = new Listbox({ callback: filterDOM, tagsSet: ingredientsTags, label: "Ingrédients", placeholder: "Rechercher un ingrédient", id: "ingredients", options: ingredientsOptions, color: "#3282f7" });
+    let ingredientsContainer = ingredients.createListboxNode();
+    let appliances = new Listbox({ callback: filterDOM, tagsSet: appliancesTags, label: "Appareils", placeholder: "Rechercher un appareil", id: "appliances", options: appliancesOptions, color: "#68d9a4" });
+    let appliancesContainer = appliances.createListboxNode();
+    let utensils = new Listbox({ callback: filterDOM, tagsSet: utensilsTags, label: "Ustensiles", placeholder: "Rechercher un ustensile", id: "utensils", options: utensilsOptions, color: "#ed6454" });
+    let utensilsContainer = utensils.createListboxNode();
+
+    // ...then the listboxes are added to the DOM.
+    filterDivision.appendChild(ingredientsContainer);
+    filterDivision.appendChild(appliancesContainer);
+    filterDivision.appendChild(utensilsContainer);
+  }
 };
 
 //=//| search bar form |\\=\\

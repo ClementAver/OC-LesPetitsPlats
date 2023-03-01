@@ -253,6 +253,10 @@ header svg {
   margin: 0 auto 1.6rem;
   gap: 50px;
 }
+.recipes > p {
+  margin: auto;
+  text-align: center;
+}
 
 .results {
   margin: 0.5rem auto 0.5rem;

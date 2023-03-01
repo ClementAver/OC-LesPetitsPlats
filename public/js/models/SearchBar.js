@@ -23,9 +23,19 @@ export default class SearchBar {
     form.append(button);
     header.after(form);
 
+    /*
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      this._callback();
+      if (input.value.length > 2) {
+        this._callback();
+      }
+    });
+    */
+
+    input.addEventListener("keyup", (e) => {
+      if (input.value.length > 2 || (input.value.length > 1 && e.key === "Backspace")) {
+        this._callback();
+      }
     });
   }
 }
