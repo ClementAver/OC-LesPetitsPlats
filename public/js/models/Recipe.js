@@ -1,5 +1,4 @@
 export default class Recipe {
-  //définir mon constructeur.
   constructor(object) {
     this._name = object.name;
     this._ingredients = object.ingredients;
@@ -31,7 +30,6 @@ export default class Recipe {
       if (ingredient.quantity) {
         if (ingredient.unit) {
           const unit = ingredient.unit;
-          // comment formater correctement les unités ?
           li.innerHTML = `<span>${ingredient.ingredient}</span>&#8239;: ${ingredient.quantity} ${unit}`;
         } else {
           li.innerHTML = `<span>${ingredient.ingredient}</span>&#8239;: ${ingredient.quantity}`;
@@ -62,10 +60,30 @@ export default class Recipe {
   }
 
   ingredientsIncludes(string) {
+    let include = false;
+    for (let i = 0; i < this._ingredients.length - 1; i++) {
+      if (this._ingredients[i].ingredient.toLowerCase().includes(string.toLowerCase())) {
+        include = true;
+      }
+    }
+    return include;
+  }
+
+  descriptionIncludes(string) {
+    return this._description.toLowerCase().includes(string.toLowerCase());
+  }
+
+  /*
+  nameIncludes(string) {
+    return this._name.toLowerCase().includes(string.toLowerCase());
+  }
+
+  ingredientsIncludes(string) {
     return this._ingredients.some((ingredient) => ingredient.ingredient.toLowerCase().includes(string.toLowerCase()));
   }
 
   descriptionIncludes(string) {
     return this._description.toLowerCase().includes(string.toLowerCase());
   }
+*/
 }

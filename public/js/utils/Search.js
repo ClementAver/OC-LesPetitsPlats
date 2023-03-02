@@ -7,10 +7,9 @@ export default class Search {
     let sortedRecipes = new Set(this._recipes);
 
     if (searchBarValue.length > 2) {
-      sortedRecipes.forEach((recipe) => {
-        // matches if regex tests true on either name, ingredients OR description AND isn't already sorted.
+      for (let recipe of sortedRecipes) {
         recipe.nameIncludes(searchBarValue) || recipe.ingredientsIncludes(searchBarValue) || recipe.descriptionIncludes(searchBarValue) ? true : sortedRecipes.delete(recipe);
-      });
+      }
     }
 
     if (ingredientsTags.size > 0) {

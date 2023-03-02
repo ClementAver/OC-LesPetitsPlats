@@ -1,6 +1,6 @@
 import Tag from "../models/Tag.js";
 
-// argument e.g. {label : "Gender", id : "gender", options : ["male", "female", "non binary"], color: #ffffff}.
+// argument e.g. { callback: filterDOM, tagsSet: ingredientsTags, label: "Ingrédients", placeholder: "Rechercher un ingrédient", id: "ingredients", options: ingredientsOptions, color: "#3282f7" }.
 export default class Listbox {
   constructor(object) {
     this._callback = object.callback;
