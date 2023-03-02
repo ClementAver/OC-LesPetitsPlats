@@ -8,7 +8,6 @@ export default class Search {
 
     if (searchBarValue.length > 2) {
       sortedRecipes.forEach((recipe) => {
-        // matches if regex tests true on either name, ingredients OR description AND isn't already sorted.
         recipe.nameIncludes(searchBarValue) || recipe.ingredientsIncludes(searchBarValue) || recipe.descriptionIncludes(searchBarValue) ? true : sortedRecipes.delete(recipe);
       });
     }

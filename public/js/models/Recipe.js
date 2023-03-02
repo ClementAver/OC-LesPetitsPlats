@@ -1,5 +1,4 @@
 export default class Recipe {
-  //définir mon constructeur.
   constructor(object) {
     this._name = object.name;
     this._ingredients = object.ingredients;
@@ -31,7 +30,6 @@ export default class Recipe {
       if (ingredient.quantity) {
         if (ingredient.unit) {
           const unit = ingredient.unit;
-          // comment formater correctement les unités ?
           li.innerHTML = `<span>${ingredient.ingredient}</span>&#8239;: ${ingredient.quantity} ${unit}`;
         } else {
           li.innerHTML = `<span>${ingredient.ingredient}</span>&#8239;: ${ingredient.quantity}`;
