@@ -14,8 +14,6 @@ let ingredientsOptions = new Set();
 let appliancesOptions = new Set();
 let utensilsOptions = new Set();
 
-export { ingredientsTags, appliancesTags, utensilsTags };
-
 // data > données métier.
 let instanciatedRecipes = [];
 recipes.forEach((recipe) => instanciatedRecipes.push(new Recipe(recipe)));
@@ -36,7 +34,7 @@ let filterDOM = () => {
     searchBarValue = "";
   }
 
-  let sortedRecipes = search.search(searchBarValue);
+  let sortedRecipes = search.search(searchBarValue, ingredientsTags, appliancesTags, utensilsTags);
 
   //=//| results division |\\=\\
   let results = document.querySelector(".results");

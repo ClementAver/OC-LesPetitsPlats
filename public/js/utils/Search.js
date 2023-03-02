@@ -1,11 +1,9 @@
-import { ingredientsTags, appliancesTags, utensilsTags } from "../pages/index.js";
-
 export default class Search {
   constructor(recipes) {
     this._recipes = recipes;
   }
 
-  search(searchBarValue) {
+  search(searchBarValue, ingredientsTags, appliancesTags, utensilsTags) {
     let sortedRecipes = new Set(this._recipes);
 
     if (searchBarValue.length > 2) {
