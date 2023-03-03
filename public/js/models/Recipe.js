@@ -61,9 +61,12 @@ export default class Recipe {
 
   ingredientsIncludes(string) {
     let include = false;
-    for (let i = 0; i < this._ingredients.length - 1; i++) {
-      if (this._ingredients[i].ingredient.toLowerCase().includes(string.toLowerCase())) {
+    for (let ingredient of this._ingredients) {
+      if (ingredient.ingredient.toLowerCase().includes(string.toLowerCase())) {
         include = true;
+      }
+      if (include) {
+        return;
       }
     }
     return include;
@@ -72,18 +75,4 @@ export default class Recipe {
   descriptionIncludes(string) {
     return this._description.toLowerCase().includes(string.toLowerCase());
   }
-
-  /*
-  nameIncludes(string) {
-    return this._name.toLowerCase().includes(string.toLowerCase());
-  }
-
-  ingredientsIncludes(string) {
-    return this._ingredients.some((ingredient) => ingredient.ingredient.toLowerCase().includes(string.toLowerCase()));
-  }
-
-  descriptionIncludes(string) {
-    return this._description.toLowerCase().includes(string.toLowerCase());
-  }
-*/
 }
