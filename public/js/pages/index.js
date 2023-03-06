@@ -50,21 +50,21 @@ let filterDOM = () => {
     1. fills the listboxes's options sets.
     2. generates the recipe card into the DOM.
   */
-    sortedRecipes.forEach((recipe) => {
-      recipe._ingredients.forEach((ingredient) => {
+    for (let recipe of sortedRecipes) {
+      for (let ingredient of recipe._ingredients) {
         ingredientsOptions.add(ingredient.ingredient.toLowerCase());
-      });
+      }
 
       appliancesOptions.add(recipe._appliance.toLowerCase());
 
-      recipe._utensils.forEach((utensil) => {
+      for (let utensil of recipe._utensils) {
         utensilsOptions.add(utensil.toLowerCase());
-      });
+      }
 
       //=//| recipes section |\\=\\
       // generates the cards on the recipes section.
       recipe.card();
-    });
+    }
 
     //=//| filter division |\\=\\
     // retrieves the filter division then empties it.
