@@ -16,7 +16,9 @@ let utensilsOptions = new Set();
 
 // data > données métier.
 let instanciatedRecipes = [];
-recipes.forEach((recipe) => instanciatedRecipes.push(new Recipe(recipe)));
+for (let recipe of recipes) {
+  instanciatedRecipes.push(new Recipe(recipe));
+}
 
 let filterDOM = () => {
   // retrieves the recipes section and empties it.

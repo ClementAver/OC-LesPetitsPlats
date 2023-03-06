@@ -60,16 +60,12 @@ export default class Recipe {
   }
 
   ingredientsIncludes(string) {
-    let include = false;
     for (let ingredient of this._ingredients) {
       if (ingredient.ingredient.toLowerCase().includes(string.toLowerCase())) {
-        include = true;
-      }
-      if (include) {
-        return;
+        return true;
       }
     }
-    return include;
+    return false;
   }
 
   descriptionIncludes(string) {
