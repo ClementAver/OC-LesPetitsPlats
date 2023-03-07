@@ -43,7 +43,7 @@ let filterDOM = () => {
   results.textContent = `${sortedRecipes.size} résultat(s)`;
 
   if (sortedRecipes.size === 0) {
-    recipesSection.innerHTML = `<p>Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc."</p>`;
+    recipesSection.innerHTML = `<p>Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc.</p>`;
   } else {
     /*
     for all sorted recipes :
