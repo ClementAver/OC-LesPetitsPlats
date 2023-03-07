@@ -23,10 +23,10 @@ export default class Listbox {
   createOptions(set) {
     this._listbox.innerHTML = "";
     set.forEach((key) => {
-      let formatted = key.replace(/ /g, "").toLowerCase();
+      let formatted = key.replaceAll(" ", "").toLowerCase();
       const option = document.createElement("li");
       option.setAttribute("role", "option");
-      option.setAttribute("id", `${formatted}`);
+      option.setAttribute("id", `${formatted}${this._color}`);
       option.setAttribute("tabindex", "0");
       option.textContent = `${key}`;
       option.classList.add("option");
