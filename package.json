@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass ./stylesheets/main.scss:./public/css/style.css -w --style expanded",
+    "prefix": "postcss ./public/css/style.css --use autoprefixer -d ./public/css/prefixed/",
     "lint": "eslint ."
   },
   "repository": {
@@ -13,6 +14,7 @@
   },
   "author": "",
   "license": "ISC",
+  "browserslist": "last 4 versions", 
   "bugs": {
     "url": "https://github.com/ClementAver/OC-LesPetitsPlats/issues"
   },

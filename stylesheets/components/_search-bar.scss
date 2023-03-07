@@ -1,6 +1,6 @@
 form.search-bar {
   @include flex;
-  @include j-cA-i(start, center);
+  @include j-cA-i(flex-start, center);
   @include b-r;
   height: 4rem;
   margin: 0 auto 1.6rem;
