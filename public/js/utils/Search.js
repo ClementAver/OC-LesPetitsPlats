@@ -43,7 +43,7 @@ export default class Search {
     }
 
     // test unit - start
-    //console.clear();
+    console.clear();
     console.log("----> sortedRecipes :");
     console.log(sortedRecipes);
     // test unit - end

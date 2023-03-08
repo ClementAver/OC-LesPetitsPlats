@@ -6,9 +6,9 @@ export default class Tag {
     this._callback = object.callback;
   }
 
-  tagDeletion = () => {
+  tagDeletion() {
     this._set.delete(this._name);
-  };
+  }
 
   addToDOM() {
     const tags = document.querySelector(".tags");
